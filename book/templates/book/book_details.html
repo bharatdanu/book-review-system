@@ -1,0 +1,26 @@
+{% extends "book/base.html" %}
+{% block title %} Book detail {% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="container ">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">{{bk.title}}</h2>
+                <h6 class="card-subtitle mb-2 text-body-secondary">by {{bk.author}}</h6>
+                <p class="card-text"><span class="fw-bold">Genre</span>: {{bk.genre}}</p>
+                <p class="card-text"><span class="fw-bold">ISBN</span>: {{bk.isbn}}</p>
+                <p class="card-text"><span class="fw-bold">Publication Date</span>: {{bk.publication_date}}</p>
+                <p class="card-text"><span class="fw-medium fs-4">Description</span><br> {{bk.description}}</p>
+                <a href="{% url 'update-detail' bk.pk %}" class="btn btn-primary d-inline-block">EDIT</a>
+
+                <form action="{% url 'delete-book' bk.pk %}" method="POST" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
